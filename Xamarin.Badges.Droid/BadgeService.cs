@@ -1,24 +1,16 @@
 using Android.Content;
 
-namespace Xamarin.Badges.Droid
+namespace Xamarin.Badges.Droid;
+
+public class BadgeService(Context context) : IBadgeService
 {
-	public class BadgeService : IBadgeService
+	public void Clear()
 	{
-		private readonly Context _context;
+		Badger.ApplyBadgeCount(context, 0);
+	}
 
-		public BadgeService(Context context)
-		{
-			_context = context;
-		}
-
-		public void Clear()
-		{
-			Badger.ApplyBadgeCount(_context, 0);
-		}
-
-		public void Set(int badgeCount)
-		{
-			Badger.ApplyBadgeCount(_context, badgeCount);
-		}
+	public void Set(int badgeCount)
+	{
+		Badger.ApplyBadgeCount(context, badgeCount);
 	}
 }
